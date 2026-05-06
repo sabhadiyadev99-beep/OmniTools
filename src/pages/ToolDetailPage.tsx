@@ -151,9 +151,47 @@ export default function ToolDetailPage() {
         let prompt = "";
         switch(tool.id) {
           case "insta-caption": prompt = `Write engaging Instagram captions for: ${input}. Include relevant emojis and hashtags.`; break;
+          case "funny-insta-caption": prompt = `Write hilarious and witty Instagram captions for: ${input}. Make them funny and relatble. Include relevant emojis.`; break;
+          case "short-insta-caption": prompt = `Write short, punchy, and catchy Instagram captions for: ${input}. Keep them under 10 words. Include emojis.`; break;
+          case "reel-caption": prompt = `Write engaging and catchy captions for an Instagram Reel about: ${input}. Include relevant emojis and hashtags.`; break;
+          case "boy-insta-caption": prompt = `Write cool, bold, and stylish Instagram captions for boys about: ${input}. Include attitude and confidence. Use emojis.`; break;
+          case "girl-insta-caption": prompt = `Write cute, classy, and stylish Instagram captions for girls about: ${input}. Include elegance and confidence. Use emojis.`; break;
+          case "attitude-insta-caption": prompt = `Write bold, savage, and powerful attitude captions for Instagram about: ${input}. Include confidence and boss vibes. Use emojis.`; break;
+          case "love-insta-caption": prompt = `Write beautiful, catchy, and emotional love captions for Instagram about: ${input}. Include romantic and cute vibes. Use emojis.`; break;
+          case "sad-insta-caption": prompt = `Write deep, emotional, and relatable sad captions for Instagram about: ${input}. Include feelings of heartbreak or loneliness. Use emojis.`; break;
+          case "gym-insta-caption": prompt = `Write powerful, motivational, and high-energy gym captions for Instagram about: ${input}. Include fitness goals and grind vibes. Use emojis and hashtags.`; break;
+          case "travel-insta-caption": prompt = `Write fresh, catchy, and creative travel Instagram captions for: ${input}. Include vibes like beach, mountains, or city. Include relevant emojis and hashtags.`; break;
+          case "motivational-insta-caption": prompt = `Write powerful, inspiring, and engaging motivational Instagram captions for: ${input}. Include success mindset and positive grind vibes. Use emojis.`; break;
+          case "aesthetic-insta-caption": prompt = `Write clean, stylish, minimalist, and aesthetic Instagram captions for: ${input}. Include trendy and moody vibes. Use carefully selected emojis.`; break;
+          case "cool-insta-caption": prompt = `Write stylish, catchy, and creative cool Instagram captions for: ${input}. Include trendy vibes and social media slang where appropriate. Use emojis.`; break;
+          case "selfie-insta-caption": prompt = `Write catchy, creative, and unique Instagram captions for a selfie about: ${input}. Include funny, cute, and confident vibes. Use emojis.`; break;
+          case "couple-insta-caption": prompt = `Write beautiful, romantic, cute, and funny Instagram captions for a couple photo about: ${input}. Include relationship goals and sweet vibes. Use emojis.`; break;
+          case "friendship-insta-caption": prompt = `Write fun, short, meaningful, and catchy Instagram captions for a photo with friends about: ${input}. Include squad goals and bestie vibes. Use emojis.`; break;
+          case "hindi-insta-caption": prompt = `Write catchy, emotional, and stylish Hindi captions for Instagram about: ${input}. Provide various moods like funny, romantic, or attitude. Use Hindi script and include relevant emojis.`; break;
+          case "english-insta-caption": prompt = `Write clean, catchy, and natural English Instagram captions for: ${input}. Include various vibes like cool, funny, or emotional. Use emojis.`; break;
+          case "one-word-insta-caption": prompt = `Generate powerful, catchy, and creative ONE-WORD Instagram captions for: ${input}. Provide a diverse list of high-impact single words.`; break;
+          case "savage-insta-caption": prompt = `Write bold, witty, and savage Instagram captions for: ${input}. Include attitude, boss vibes, and confidence. Use emojis.`; break;
+          case "trending-insta-caption": prompt = `Write catchy, simple, and engaging Instagram captions that match current trends for: ${input}. Include viral vibes and social media slang where appropriate. Use emojis.`; break;
+          case "viral-reel-caption": prompt = `Write high-engagement, viral Instagram Reel captions for: ${input}. Include a strong hook, engaging body, and clear CTA. Use emojis and keep it punchy.`; break;
+          case "post-insta-caption": prompt = `Write engaging, creative, and catchy Instagram post captions for: ${input}. Provide options for various moods and styles. Use emojis.`; break;
           case "reel-script": prompt = `Write viral Reel scripts (Hook, Body, CTA) for: ${input}. Keep it punchy and short.`; break;
           case "hook-gen": prompt = `Generate scroll-stopping hooks for social media about: ${input}.`; break;
           case "hashtag-gen": prompt = `Generate trending hashtags for: ${input}. Categorize them by size.`; break;
+          case "free-hashtag-gen": prompt = `Generate high-reach Instagram hashtags for: ${input}. Provide a mix of viral, trending, and niche hashtags. Categorize them into sets or sizes.`; break;
+          case "free-hashtags-reels": prompt = `Generate high-reach Instagram Reel hashtags for: ${input}. Provide a mix of viral, trending, and niche hashtags specifically for Reels.`; break;
+          case "fitness-hashtags-gen": prompt = `Generate a list of viral and relevant fitness hashtags based on this topic: "${input}". Include popular gym tags, workout tags, and yoga/health tags. Categorize them into sets.`; break;
+          case "motivation-hashtags-gen": prompt = `Generate high-reach Instagram motivation hashtags for: ${input}. Provide a mix of viral, trending, and niche tags for success, daily inspiration, study, gym motivation, etc. Categorize them into sets.`; break;
+          case "youtube-shorts-hashtags": prompt = `Generate high-performing YouTube Shorts hashtags for: ${input}. Provide a mix of trending, viral, and niche-specific hashtags optimized for the YouTube Shorts algorithm.`; break;
+          case "insta-growth-hashtags": prompt = `Generate high-reach Instagram growth hashtags for: ${input}. Provide a mix of viral, trending, and niche-specific hashtags designed to maximize exposure. Categorize them into sets.`; break;
+          case "insta-hashtags-free": prompt = `Generate high-performing and relevant Instagram hashtags for: ${input}. Provide a mix of viral, trending, and niche tags to improve reach and engagement. Categorize them into sets or sizes.`; break;
+          case "niche-hashtags-insta": prompt = `Generate a list of highly targeted and relevant niche hashtags for: ${input}. Provide a mix of low-competition and medium-competition hashtags specific to this niche. Categorize them into sets.`; break;
+          case "popular-insta-hashtags": prompt = `Generate a list of popular and high-performing Instagram hashtags for: ${input}. Provide a mix of trending, viral, and niche hashtags used by top creators. Categorize them into sets or sizes.`; break;
+          case "gym-hashtags-gen": prompt = `Generate high-reach Instagram hashtags for gym and fitness content about: ${input}. Provide a mix of viral, trending, and niche gym hashtags.`; break;
+          case "travel-hashtags-gen": prompt = `Generate high-reach Instagram travel hashtags for: ${input}. Provide a mix of viral, trending, and niche travel tags for beach, adventure, solo trips, etc.`; break;
+          case "business-hashtags-gen": prompt = `Generate high-reach business hashtags for: ${input}. Provide a mix of viral, trending, and niche tags suitable for marketing, small businesses, and startups.`; break;
+          case "viral-reel-hashtags": prompt = `Write high-engagement, viral Instagram Reel hashtags for: ${input}. Provide a mix of viral, trending, and niche hashtags. Categorize them into sets or sizes.`; break;
+          case "fashion-hashtags-gen": prompt = `Generate a list of viral and relevant hashtags for fashion based on this topic: "${input}". Include popular fashion tags, niche tags, and aesthetic/style tags. Categorize them as if you are giving sets.`; break;
+          case "food-hashtags-gen": prompt = `Generate a list of trending and relevant hashtags for food based on this topic: "${input}". Include a mix of popular food tags, niche tags, and specific dish/diet tags. Categorize them into sets.`; break;
           case "bio-gen": prompt = `Write creative and professional social media bios for: ${input}.`; break;
           case "offer-msg": prompt = `Write persuasive sales offer messages for: ${input}. Focus on value and include a clear CTA.`; break;
           case "wa-broadcast": prompt = `Write WhatsApp broadcast messages for a business about: ${input}. Keep it friendly and professional.`; break;
@@ -168,8 +206,9 @@ export default function ToolDetailPage() {
           case "text-emoji": prompt = `Translate this text into purely emojis that convey the meaning: ${input}`; break;
         }
 
-        const isStructuredNeeded = ["insta-caption", "reel-script", "flirty-msg", "sorry-msg", "breakup-msg", "shayari-gen", "festival-caption", "chat-reply", "bio-gen", "hook-gen"].includes(tool.id);
+        const isStructuredNeeded = ["insta-caption", "funny-insta-caption", "short-insta-caption", "reel-caption", "boy-insta-caption", "girl-insta-caption", "attitude-insta-caption", "love-insta-caption", "sad-insta-caption", "gym-insta-caption", "travel-insta-caption", "motivational-insta-caption", "aesthetic-insta-caption", "cool-insta-caption", "selfie-insta-caption", "couple-insta-caption", "friendship-insta-caption", "hindi-insta-caption", "english-insta-caption", "one-word-insta-caption", "savage-insta-caption", "trending-insta-caption", "viral-reel-caption", "post-insta-caption", "free-hashtag-gen", "free-hashtags-reels", "gym-hashtags-gen", "travel-hashtags-gen", "business-hashtags-gen", "viral-reel-hashtags", "fashion-hashtags-gen", "food-hashtags-gen", "fitness-hashtags-gen", "motivation-hashtags-gen", "youtube-shorts-hashtags", "insta-growth-hashtags", "insta-hashtags-free", "niche-hashtags-insta", "popular-insta-hashtags", "reel-script", "flirty-msg", "sorry-msg", "breakup-msg", "shayari-gen", "festival-caption", "chat-reply", "bio-gen", "hook-gen"].includes(tool.id);
         const isGujaratiNeeded = ["flirty-msg", "sorry-msg", "breakup-msg", "shayari-gen", "festival-caption", "chat-reply"].includes(tool.id);
+        const isHindiNeeded = ["hindi-insta-caption"].includes(tool.id);
 
         if (prompt) {
           if (isStructuredNeeded) {
@@ -179,8 +218,8 @@ export default function ToolDetailPage() {
                 type: Type.OBJECT,
                 properties: {
                   title: { type: Type.STRING, description: "Short descriptive heading (2-4 words)" },
-                  message: { type: Type.STRING, description: isGujaratiNeeded ? "Core content in natural Gujarati (max 2 lines)" : "Core content (max 2 lines)" },
-                  meaning: { type: Type.STRING, description: isGujaratiNeeded ? "Simple English translation (1 line)" : "Short explanation of why this works (1 line)" }
+                  message: { type: Type.STRING, description: isHindiNeeded ? "Core content in natural Hindi (max 2 lines)" : (isGujaratiNeeded ? "Core content in natural Gujarati (max 2 lines)" : "Core content (max 2 lines)") },
+                  meaning: { type: Type.STRING, description: (isHindiNeeded || isGujaratiNeeded) ? "Simple English translation (1 line)" : "Short explanation of why this works (1 line)" }
                 },
                 required: ["title", "message", "meaning"]
               }
