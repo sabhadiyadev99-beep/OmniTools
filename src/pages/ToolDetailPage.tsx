@@ -258,7 +258,7 @@ export default function ToolDetailPage() {
   };
 
   const handleShareWhatsApp = () => {
-    const text = encodeURIComponent(`Check out this result from OmniTools: \n\n${result}`);
+    const text = encodeURIComponent(`Check out this result from ToolVanta: \n\n${result}`);
     window.open(`https://wa.me/?text=${text}`, "_blank");
   };
 
@@ -442,7 +442,7 @@ export default function ToolDetailPage() {
               <div className="text-center space-y-4 max-w-2xl mx-auto">
                 <h3 className="text-3xl font-bold tracking-tight">Explore More Free Tools</h3>
                 <p className="text-slate-500 dark:text-slate-400">
-                  OmniTools features 20+ professional utilities. Search for any tool to get started instantly.
+                  ToolVanta features 20+ professional utilities. Search for any tool to get started instantly.
                 </p>
                 
                 {/* Internal Search */}

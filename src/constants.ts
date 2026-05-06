@@ -42,7 +42,7 @@ export const tools: Tool[] = [
     description: "Generate engaging captions for your Instagram posts instantly.",
     icon: Instagram,
     path: "/creator/instagram-caption-generator",
-    seoTitle: "Free Instagram Caption Generator | OmniTools",
+    seoTitle: "Free Instagram Caption Generator | ToolVanta",
     seoDescription: "Create viral Instagram captions with our AI-powered generator. Boost your engagement today.",
     keywords: ["instagram marketing", "social media growth", "viral captions", "engagement tips", "content creator tools"]
   },

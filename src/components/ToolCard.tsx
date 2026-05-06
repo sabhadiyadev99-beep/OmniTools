@@ -22,7 +22,7 @@ export function ToolCard({ tool }: ToolCardProps) {
         to={tool.path}
         className={cn(
           "block p-6 rounded-3xl h-full transition-all duration-300",
-          "bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800",
+          "bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800",
           "hover:shadow-xl hover:shadow-primary/5 hover:border-primary/20",
           "flex flex-col relative overflow-hidden"
         )}

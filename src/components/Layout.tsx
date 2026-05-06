@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ThemeToggle } from "./ThemeToggle";
 import { cn } from "@/src/lib/utils";
 import { Wrench, Menu, X, Github, Twitter, Mail, Search } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -31,13 +30,12 @@ export function Header() {
         : "bg-transparent py-5"
     )}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
-            <Wrench size={22} />
-          </div>
-          <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
-            Omni<span className="text-primary">Tools</span>
-          </span>
+        <Link to="/" className="flex items-center group">
+          <img 
+            src="https://ratty-amber-w22xwlu7wn.edgeone.app/Screenshot%202026-05-06%20124816-Photoroom-Picsart-AiImageEnhancer-Picsart-AiImageEnhancer.png" 
+            alt="ToolVanta Logo" 
+            className="h-12 md:h-16 w-auto group-hover:scale-105 transition-transform"
+          />
         </Link>
 
         {/* Desktop Nav */}
@@ -57,8 +55,19 @@ export function Header() {
                 }
               }}
               onChange={(e) => {
+                 const value = e.target.value;
                  if (location.pathname !== "/") {
-                   // Optional: redirect to home with search query
+                   navigate(`/?search=${encodeURIComponent(value)}`);
+                 } else {
+                   // If on home, we can also update the global search state if we had access to it, 
+                   // but Home.tsx uses local state. For now, since focus is redirected on focus, 
+                   // this part is mostly for when typing starts.
+                   const mainSearch = document.querySelector('input[placeholder*="Search 20+ tools"]') as HTMLInputElement;
+                   if (mainSearch) {
+                     mainSearch.value = value;
+                     mainSearch.dispatchEvent(new Event('input', { bubbles: true }));
+                     mainSearch.focus();
+                   }
                  }
               }}
               onClick={() => {
@@ -66,18 +75,15 @@ export function Header() {
                   navigate("/?search=");
                 }
               }}
-              className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border-none focus:ring-2 focus:ring-primary/20 outline-none transition-all text-xs"
+              className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-transparent focus:border-primary/30 focus:ring-4 focus:ring-primary/5 outline-none transition-all text-xs text-slate-900 dark:text-slate-100 placeholder:text-slate-500"
             />
           </div>
           <Link to="/" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">Tools</Link>
           <Link to="/about" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">About</Link>
-          <div className="h-4 w-[1px] bg-slate-200 dark:bg-slate-800" />
-          <ThemeToggle />
         </nav>
 
         {/* Mobile Nav Toggle */}
         <div className="flex items-center gap-4 md:hidden">
-          <ThemeToggle />
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="p-2 text-slate-600 dark:text-slate-300"
@@ -95,14 +101,16 @@ export function Header() {
             <input 
               type="text"
               placeholder="Search tools..."
-              onClick={() => navigate("/")}
-              className="w-full pl-12 pr-6 py-4 rounded-2xl bg-slate-100 dark:bg-slate-900 border-none outline-none text-sm"
+              onChange={(e) => {
+                navigate(`/?search=${encodeURIComponent(e.target.value)}`);
+              }}
+              className="w-full pl-12 pr-6 py-4 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-transparent focus:border-primary text-slate-900 dark:text-white outline-none text-sm placeholder:text-slate-500"
             />
           </div>
           <nav className="flex flex-col gap-6 text-xl font-bold">
-            <Link to="/">Explore Tools</Link>
-            <Link to="/about">About Us</Link>
-            <Link to="/contact">Contact</Link>
+            <Link to="/" className="text-slate-900 dark:text-white">Explore Tools</Link>
+            <Link to="/about" className="text-slate-900 dark:text-white">About Us</Link>
+            <Link to="/contact" className="text-slate-900 dark:text-white">Contact</Link>
           </nav>
         </div>
       )}
@@ -115,11 +123,8 @@ export function Footer() {
     <footer className="bg-slate-50 dark:bg-slate-950 border-t border-slate-100 dark:border-slate-900 py-20 mt-20">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-1 space-y-6">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white">
-              <Wrench size={18} />
-            </div>
-            <span className="text-lg font-bold">OmniTools</span>
+          <Link to="/" className="flex items-center">
+            <img src="https://ratty-amber-w22xwlu7wn.edgeone.app/Screenshot%202026-05-06%20124816-Photoroom-Picsart-AiImageEnhancer-Picsart-AiImageEnhancer.png" alt="ToolVanta Logo" className="h-12 w-auto" />
           </Link>
           <p className="text-sm text-slate-500 leading-relaxed">
             Helping creators and businesses streamline their digital existence with 20+ professional-grade online tools.
@@ -166,7 +171,7 @@ export function Footer() {
       </div>
       
       <div className="max-w-7xl mx-auto px-6 pt-12 mt-12 border-t border-slate-100 dark:border-slate-900 flex flex-col md:flex-row justify-between gap-4 text-sm text-slate-400">
-        <p>© {new Date().getFullYear()} OmniTools. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} ToolVanta. All rights reserved.</p>
         <p>Built with Gemini AI & Love.</p>
       </div>
     </footer>

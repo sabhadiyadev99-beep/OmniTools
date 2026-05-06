@@ -46,9 +46,10 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-4xl md:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-500 dark:from-white dark:to-slate-500 pb-2"
+          className="text-4xl md:text-7xl font-extrabold tracking-tighter"
         >
-          Simplify Your <span className="text-primary">Digital Workflow</span>
+          <span className="text-slate-900 dark:text-white">Simplify Your</span>{" "}
+          <span className="text-primary">Digital Workflow</span>
         </motion.h1>
 
         <motion.p
@@ -76,9 +77,9 @@ export default function Home() {
               onChange={(e) => setSearch(e.target.value)}
               className={cn(
                 "w-full pl-12 pr-6 py-4 rounded-2xl",
-                "bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800",
-                "focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all",
-                "text-slate-900 dark:text-white placeholder:text-slate-400 shadow-sm"
+                "bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700",
+                "focus:ring-4 focus:ring-primary/10 focus:border-primary outline-none transition-all",
+                "text-slate-900 dark:text-white placeholder:text-slate-500 shadow-sm"
               )}
             />
           </div>

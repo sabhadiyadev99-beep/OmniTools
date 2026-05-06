@@ -32,7 +32,7 @@ export const ResultCard: React.FC<ResultCardProps> = ({ option, index }) => {
   };
 
   const handleShare = () => {
-    const text = encodeURIComponent(`💬 ${option.title}\n\n👉 ${option.message}\n\n🌐 ${option.meaning}\n\nGenerated via OmniTools`);
+    const text = encodeURIComponent(`💬 ${option.title}\n\n👉 ${option.message}\n\n🌐 ${option.meaning}\n\nGenerated via ToolVanta`);
     window.open(`https://wa.me/?text=${text}`, "_blank");
   };
 

@@ -54,7 +54,7 @@ export function PasswordGenerator() {
 }
 
 export function QRCodeGenerator() {
-  const [value, setValue] = useState("https://omnitools.com");
+  const [value, setValue] = useState("https://toolvanta.com");
   const [downloading, setDownloading] = useState(false);
 
   const handleDownload = () => {
