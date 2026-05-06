@@ -2,13 +2,15 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeToggle } from "./ThemeToggle";
 import { cn } from "@/src/lib/utils";
-import { Wrench, Menu, X, Github, Twitter, Mail } from "lucide-react";
+import { Wrench, Menu, X, Github, Twitter, Mail, Search } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -39,10 +41,36 @@ export function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+        <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+          <div className="relative group min-w-[200px]">
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+            <input 
+              type="text"
+              placeholder="Search tools..."
+              onFocus={() => {
+                // If on homepage, focus the main search
+                if (location.pathname === "/") {
+                  document.querySelector('input[placeholder*="Search 20+ tools"]')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  (document.querySelector('input[placeholder*="Search 20+ tools"]') as HTMLInputElement)?.focus();
+                } else {
+                  // Redirect to home with search param if I want, but for now just link to home
+                }
+              }}
+              onChange={(e) => {
+                 if (location.pathname !== "/") {
+                   // Optional: redirect to home with search query
+                 }
+              }}
+              onClick={() => {
+                if (location.pathname !== "/") {
+                  navigate("/?search=");
+                }
+              }}
+              className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border-none focus:ring-2 focus:ring-primary/20 outline-none transition-all text-xs"
+            />
+          </div>
           <Link to="/" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">Tools</Link>
           <Link to="/about" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">About</Link>
-          <Link to="/contact" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">Contact</Link>
           <div className="h-4 w-[1px] bg-slate-200 dark:bg-slate-800" />
           <ThemeToggle />
         </nav>
@@ -61,12 +89,20 @@ export function Header() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 top-[73px] bg-white dark:bg-slate-950 z-40 md:hidden p-6 space-y-6">
-          <nav className="flex flex-col gap-6 text-lg font-bold">
-            <Link to="/">Tools</Link>
-            <Link to="/about">About</Link>
+        <div className="fixed inset-0 top-[65px] bg-white dark:bg-slate-950 z-40 md:hidden p-6 space-y-8 animate-in slide-in-from-top duration-300">
+          <div className="relative group">
+            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <input 
+              type="text"
+              placeholder="Search tools..."
+              onClick={() => navigate("/")}
+              className="w-full pl-12 pr-6 py-4 rounded-2xl bg-slate-100 dark:bg-slate-900 border-none outline-none text-sm"
+            />
+          </div>
+          <nav className="flex flex-col gap-6 text-xl font-bold">
+            <Link to="/">Explore Tools</Link>
+            <Link to="/about">About Us</Link>
             <Link to="/contact">Contact</Link>
-            <Link to="/privacy">Privacy Policy</Link>
           </nav>
         </div>
       )}

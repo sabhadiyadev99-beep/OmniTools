@@ -437,16 +437,69 @@ export default function ToolDetailPage() {
               </div>
             </div>
 
-            {/* Related Tools */}
-            <div className="bg-primary/5 rounded-3xl p-10 text-center space-y-6">
-              <h3 className="text-2xl font-bold">Want more free utilities?</h3>
-              <p className="text-slate-500">Explore our collection of creator, business, and daily utility tools.</p>
-              <div className="flex flex-wrap justify-center gap-4">
-                {tools.filter(t => t.id !== tool.id).slice(0, 3).map(t => (
-                  <Link key={t.id} to={t.path} className="px-6 py-2 rounded-full bg-white dark:bg-slate-800 text-sm font-semibold hover:text-primary transition-colors shadow-sm">
-                    {t.name}
+            {/* Related Tools & Search */}
+            <div className="bg-slate-50 dark:bg-slate-900/50 rounded-3xl p-8 md:p-12 border border-slate-100 dark:border-slate-800 space-y-10">
+              <div className="text-center space-y-4 max-w-2xl mx-auto">
+                <h3 className="text-3xl font-bold tracking-tight">Explore More Free Tools</h3>
+                <p className="text-slate-500 dark:text-slate-400">
+                  OmniTools features 20+ professional utilities. Search for any tool to get started instantly.
+                </p>
+                
+                {/* Internal Search */}
+                <div className="relative group max-w-md mx-auto pt-4">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">
+                    <RotateCcw size={18} className="animate-pulse" />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search other tools (e.g. bio, name, font)..."
+                    onChange={(e) => {
+                      const val = e.target.value.toLowerCase();
+                      const elements = document.querySelectorAll('.quick-tool-link');
+                      elements.forEach((el: any) => {
+                        const name = el.getAttribute('data-tool-name')?.toLowerCase() || "";
+                        const keywords = el.getAttribute('data-tool-keywords')?.toLowerCase() || "";
+                        if (name.includes(val) || keywords.includes(val)) {
+                          el.classList.remove('hidden');
+                        } else {
+                          el.classList.add('hidden');
+                        }
+                      });
+                    }}
+                    className={cn(
+                      "w-full pl-12 pr-6 py-4 rounded-2xl",
+                      "bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700",
+                      "focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all",
+                      "text-slate-900 dark:text-white shadow-sm"
+                    )}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                {tools.filter(t => t.id !== tool.id).map(t => (
+                  <Link 
+                    key={t.id} 
+                    to={t.path} 
+                    data-tool-name={t.name}
+                    data-tool-keywords={t.keywords.join(" ")}
+                    className="quick-tool-link group p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:border-primary/50 hover:shadow-md transition-all flex flex-col gap-2"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <t.icon size={16} />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors line-clamp-1">{t.name}</h4>
+                      <p className="text-[10px] text-slate-500 line-clamp-1">{t.category}</p>
+                    </div>
                   </Link>
                 ))}
+              </div>
+
+              <div className="text-center pt-4">
+                <Link to="/" className="inline-flex items-center gap-2 text-primary font-bold hover:underline">
+                  Browse All Tools <ChevronRight size={16} />
+                </Link>
               </div>
             </div>
           </section>

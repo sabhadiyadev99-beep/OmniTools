@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useLocation } from "react-router-dom";
 import { tools } from "@/src/constants";
 import { ToolCard } from "@/src/components/ToolCard";
 import { AdPlaceholder } from "@/src/components/AdPlaceholder";
@@ -7,14 +8,24 @@ import { Search, Sparkles, Filter } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 
 export default function Home() {
+  const location = useLocation();
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<string>("All");
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const searchParam = params.get("search");
+    if (searchParam) {
+      setSearch(searchParam);
+    }
+  }, [location.search]);
 
   const categories = ["All", "Creator", "Business", "Relationship", "Utility"];
 
   const filteredTools = tools.filter((tool) => {
     const matchesSearch = tool.name.toLowerCase().includes(search.toLowerCase()) || 
-                         tool.description.toLowerCase().includes(search.toLowerCase());
+                         tool.description.toLowerCase().includes(search.toLowerCase()) ||
+                         tool.keywords.some(k => k.toLowerCase().includes(search.toLowerCase()));
     const matchesCategory = activeCategory === "All" || tool.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
