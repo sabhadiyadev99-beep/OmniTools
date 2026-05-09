@@ -206,7 +206,7 @@ export default function ToolDetailPage() {
           case "text-emoji": prompt = `Translate this text into purely emojis that convey the meaning: ${input}`; break;
         }
 
-        const isStructuredNeeded = ["insta-caption", "funny-insta-caption", "short-insta-caption", "reel-caption", "boy-insta-caption", "girl-insta-caption", "attitude-insta-caption", "love-insta-caption", "sad-insta-caption", "gym-insta-caption", "travel-insta-caption", "motivational-insta-caption", "aesthetic-insta-caption", "cool-insta-caption", "selfie-insta-caption", "couple-insta-caption", "friendship-insta-caption", "hindi-insta-caption", "english-insta-caption", "one-word-insta-caption", "savage-insta-caption", "trending-insta-caption", "viral-reel-caption", "post-insta-caption", "free-hashtag-gen", "free-hashtags-reels", "gym-hashtags-gen", "travel-hashtags-gen", "business-hashtags-gen", "viral-reel-hashtags", "fashion-hashtags-gen", "food-hashtags-gen", "fitness-hashtags-gen", "motivation-hashtags-gen", "youtube-shorts-hashtags", "insta-growth-hashtags", "insta-hashtags-free", "niche-hashtags-insta", "popular-insta-hashtags", "reel-script", "flirty-msg", "sorry-msg", "breakup-msg", "shayari-gen", "festival-caption", "chat-reply", "bio-gen", "hook-gen"].includes(tool.id);
+        const isStructuredNeeded = ["insta-caption", "funny-insta-caption", "short-insta-caption", "reel-caption", "boy-insta-caption", "girl-insta-caption", "attitude-insta-caption", "love-insta-caption", "sad-insta-caption", "gym-insta-caption", "travel-insta-caption", "motivational-insta-caption", "aesthetic-insta-caption", "cool-insta-caption", "selfie-insta-caption", "couple-insta-caption", "friendship-insta-caption", "hindi-insta-caption", "english-insta-caption", "one-word-insta-caption", "savage-insta-caption", "trending-insta-caption", "viral-reel-caption", "post-insta-caption", "free-hashtag-gen", "free-hashtags-reels", "gym-hashtags-gen", "travel-hashtags-gen", "business-hashtags-gen", "viral-reel-hashtags", "fashion-hashtags-gen", "food-hashtags-gen", "fitness-hashtags-gen", "motivation-hashtags-gen", "youtube-shorts-hashtags", "insta-growth-hashtags", "insta-hashtags-free", "niche-hashtags-insta", "popular-insta-hashtags", "reel-script", "flirty-msg", "sorry-msg", "breakup-msg", "shayari-gen", "festival-caption", "chat-reply", "bio-gen", "hook-gen", "hashtag-gen"].includes(tool.id);
         const isGujaratiNeeded = ["flirty-msg", "sorry-msg", "breakup-msg", "shayari-gen", "festival-caption", "chat-reply"].includes(tool.id);
         const isHindiNeeded = ["hindi-insta-caption"].includes(tool.id);
 
@@ -234,6 +234,11 @@ export default function ToolDetailPage() {
           } else {
             const res = await generateContent(prompt);
             setResult(res);
+            // Scroll to results
+            setTimeout(() => {
+                const el = document.getElementById("results-anchor");
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
           }
         }
       }
@@ -368,22 +373,50 @@ export default function ToolDetailPage() {
           </div>
 
           <AnimatePresence>
-            {structuredResults.length > 0 && (
-              <div id="results-anchor" className="space-y-6">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                  Generated Options <span className="text-sm font-normal text-slate-500">(3 options)</span>
-                </h3>
-                <div className="grid grid-cols-1 gap-6">
-                  {structuredResults.map((opt, idx) => (
-                    <ResultCard key={idx} option={opt} index={idx} />
-                  ))}
+            <div id="results-anchor" className="scroll-mt-24">
+              {structuredResults.length > 0 && (
+                <div className="space-y-6">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    Generated Options <span className="text-sm font-normal text-slate-500">(3 options)</span>
+                  </h3>
+                  <div className="grid grid-cols-1 gap-6">
+                    {structuredResults.map((opt, idx) => (
+                      <ResultCard key={idx} option={opt} index={idx} />
+                    ))}
+                  </div>
+                  <AdPlaceholder label="Results Ad" />
                 </div>
-                <AdPlaceholder label="Results Ad" />
-              </div>
-            )}
-            {/* ... other result rendering ... */}
+              )}
+
+              {result && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="space-y-6"
+                >
+                  <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 md:p-10 border border-slate-100 dark:border-slate-800 shadow-sm space-y-6">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-xl font-bold">Your Result</h3>
+                      <div className="flex items-center gap-2">
+                         <button onClick={handleCopy} className="p-2 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors">
+                            {isCopied ? <Check size={20} className="text-green-500" /> : <Copy size={20} />}
+                         </button>
+                         <button onClick={handleShareWhatsApp} className="p-2 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors">
+                            <Share2 size={20} />
+                         </button>
+                      </div>
+                    </div>
+                    <div className="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 whitespace-pre-wrap leading-relaxed text-lg">
+                      {result}
+                    </div>
+                  </div>
+                  <AdPlaceholder label="Single Result Ad" />
+                </motion.div>
+              )}
+            </div>
           </AnimatePresence>
         </main>
+
 
         {seoContent && (
           <section className="space-y-16 py-16 border-t border-slate-100 dark:border-slate-800">
